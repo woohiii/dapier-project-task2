@@ -1,0 +1,367 @@
+{
+  "source_root": "~/.cache/huggingface/lerobot/Woohi123/towel_tape_halffold_gatefold_80_v4",
+  "source_repo_id": "Woohi123/towel_tape_halffold_gatefold_80_v4",
+  "source_info_sha256": "3ec00e57cb832d9ad05482170a10c009cf285409bb2dd2ea52cc126c99e6b167",
+  "manifest_sha256": "65587e20623e3fb86a8da327b92fafbe5430d863483456f6946b0f0977705550",
+  "stage": "half_fold",
+  "task": "Fold the flat towel in half",
+  "samples": [
+    {
+      "source_episode": 0,
+      "start": 0,
+      "end": 1008
+    },
+    {
+      "source_episode": 1,
+      "start": 0,
+      "end": 888
+    },
+    {
+      "source_episode": 2,
+      "start": 0,
+      "end": 606
+    },
+    {
+      "source_episode": 3,
+      "start": 0,
+      "end": 768
+    },
+    {
+      "source_episode": 4,
+      "start": 0,
+      "end": 726
+    },
+    {
+      "source_episode": 5,
+      "start": 0,
+      "end": 774
+    },
+    {
+      "source_episode": 6,
+      "start": 0,
+      "end": 786
+    },
+    {
+      "source_episode": 7,
+      "start": 0,
+      "end": 660
+    },
+    {
+      "source_episode": 8,
+      "start": 0,
+      "end": 708
+    },
+    {
+      "source_episode": 9,
+      "start": 0,
+      "end": 972
+    },
+    {
+      "source_episode": 10,
+      "start": 0,
+      "end": 1176
+    },
+    {
+      "source_episode": 11,
+      "start": 0,
+      "end": 840
+    },
+    {
+      "source_episode": 12,
+      "start": 0,
+      "end": 822
+    },
+    {
+      "source_episode": 13,
+      "start": 0,
+      "end": 768
+    },
+    {
+      "source_episode": 14,
+      "start": 0,
+      "end": 780
+    },
+    {
+      "source_episode": 15,
+      "start": 0,
+      "end": 768
+    },
+    {
+      "source_episode": 16,
+      "start": 0,
+      "end": 744
+    },
+    {
+      "source_episode": 17,
+      "start": 0,
+      "end": 792
+    },
+    {
+      "source_episode": 18,
+      "start": 0,
+      "end": 954
+    },
+    {
+      "source_episode": 19,
+      "start": 0,
+      "end": 876
+    },
+    {
+      "source_episode": 20,
+      "start": 0,
+      "end": 1110
+    },
+    {
+      "source_episode": 21,
+      "start": 0,
+      "end": 756
+    },
+    {
+      "source_episode": 22,
+      "start": 0,
+      "end": 960
+    },
+    {
+      "source_episode": 23,
+      "start": 0,
+      "end": 894
+    },
+    {
+      "source_episode": 24,
+      "start": 0,
+      "end": 816
+    },
+    {
+      "source_episode": 25,
+      "start": 0,
+      "end": 708
+    },
+    {
+      "source_episode": 26,
+      "start": 0,
+      "end": 786
+    },
+    {
+      "source_episode": 27,
+      "start": 0,
+      "end": 798
+    },
+    {
+      "source_episode": 28,
+      "start": 0,
+      "end": 990
+    },
+    {
+      "source_episode": 29,
+      "start": 0,
+      "end": 756
+    },
+    {
+      "source_episode": 30,
+      "start": 0,
+      "end": 888
+    },
+    {
+      "source_episode": 31,
+      "start": 0,
+      "end": 876
+    },
+    {
+      "source_episode": 32,
+      "start": 0,
+      "end": 1038
+    },
+    {
+      "source_episode": 33,
+      "start": 0,
+      "end": 864
+    },
+    {
+      "source_episode": 34,
+      "start": 0,
+      "end": 744
+    },
+    {
+      "source_episode": 35,
+      "start": 0,
+      "end": 1098
+    },
+    {
+      "source_episode": 36,
+      "start": 0,
+      "end": 954
+    },
+    {
+      "source_episode": 37,
+      "start": 0,
+      "end": 822
+    },
+    {
+      "source_episode": 38,
+      "start": 0,
+      "end": 858
+    },
+    {
+      "source_episode": 39,
+      "start": 0,
+      "end": 774
+    },
+    {
+      "source_episode": 40,
+      "start": 0,
+      "end": 816
+    },
+    {
+      "source_episode": 41,
+      "start": 0,
+      "end": 744
+    },
+    {
+      "source_episode": 42,
+      "start": 0,
+      "end": 942
+    },
+    {
+      "source_episode": 43,
+      "start": 0,
+      "end": 708
+    },
+    {
+      "source_episode": 44,
+      "start": 0,
+      "end": 738
+    },
+    {
+      "source_episode": 45,
+      "start": 0,
+      "end": 840
+    },
+    {
+      "source_episode": 46,
+      "start": 0,
+      "end": 810
+    },
+    {
+      "source_episode": 47,
+      "start": 0,
+      "end": 858
+    },
+    {
+      "source_episode": 48,
+      "start": 0,
+      "end": 804
+    },
+    {
+      "source_episode": 49,
+      "start": 0,
+      "end": 750
+    },
+    {
+      "source_episode": 50,
+      "start": 0,
+      "end": 1224
+    },
+    {
+      "source_episode": 51,
+      "start": 0,
+      "end": 1020
+    },
+    {
+      "source_episode": 52,
+      "start": 0,
+      "end": 984
+    },
+    {
+      "source_episode": 53,
+      "start": 0,
+      "end": 822
+    },
+    {
+      "source_episode": 54,
+      "start": 0,
+      "end": 1026
+    },
+    {
+      "source_episode": 55,
+      "start": 0,
+      "end": 960
+    },
+    {
+      "source_episode": 56,
+      "start": 0,
+      "end": 1038
+    },
+    {
+      "source_episode": 57,
+      "start": 0,
+      "end": 894
+    },
+    {
+      "source_episode": 58,
+      "start": 0,
+      "end": 1074
+    },
+    {
+      "source_episode": 59,
+      "start": 0,
+      "end": 912
+    },
+    {
+      "source_episode": 60,
+      "start": 0,
+      "end": 930
+    },
+    {
+      "source_episode": 61,
+      "start": 0,
+      "end": 1158
+    },
+    {
+      "source_episode": 62,
+      "start": 0,
+      "end": 1014
+    },
+    {
+      "source_episode": 63,
+      "start": 0,
+      "end": 1044
+    },
+    {
+      "source_episode": 64,
+      "start": 0,
+      "end": 1062
+    },
+    {
+      "source_episode": 65,
+      "start": 0,
+      "end": 1008
+    },
+    {
+      "source_episode": 66,
+      "start": 0,
+      "end": 876
+    },
+    {
+      "source_episode": 67,
+      "start": 0,
+      "end": 1224
+    },
+    {
+      "source_episode": 68,
+      "start": 0,
+      "end": 1122
+    },
+    {
+      "source_episode": 69,
+      "start": 0,
+      "end": 1032
+    }
+  ],
+  "encoder": {
+    "vcodec": "h264",
+    "g": 30,
+    "crf": 20,
+    "preset": "veryfast"
+  },
+  "complete": true
+}

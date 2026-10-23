@@ -1,0 +1,328 @@
+<title>수건 접기 B안 평가</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+KR:wght@400;500;700&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+/* 레이아웃: 한 줄 본문 칼럼 + 넓은 차트 블록, 실험 노트 같은 기술 보고서 */
+:root {
+  --bg: #f6f7f5; --surface: #ffffff; --fg: #1d2421; --muted: #5d6963; --line: #d9dfdb;
+  --accent: #0f7a66; --accent-soft: #e2f1ec;
+  --ok: #1e8a4c; --gate: #3a6fb5; --half: #c98a12; --fail: #d0603a; --nograsp: #b8322f;
+  --sans: "IBM Plex Sans KR", "Apple SD Gothic Neo", "Malgun Gothic", sans-serif;
+  --mono: "IBM Plex Mono", ui-monospace, "SFMono-Regular", monospace;
+}
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) {
+  --bg: #121614; --surface: #1a201d; --fg: #e6ece8; --muted: #9aa8a1; --line: #2e3833;
+  --accent: #4cc3a8; --accent-soft: #1c3029;
+  --ok: #46c27a; --gate: #6f9be0; --half: #e0aa3e; --fail: #e88460; --nograsp: #e8605b; color-scheme: dark } }
+:root[data-theme="dark"] {
+  --bg: #121614; --surface: #1a201d; --fg: #e6ece8; --muted: #9aa8a1; --line: #2e3833;
+  --accent: #4cc3a8; --accent-soft: #1c3029;
+  --ok: #46c27a; --gate: #6f9be0; --half: #e0aa3e; --fail: #e88460; --nograsp: #e8605b; color-scheme: dark }
+body { background: var(--bg); color: var(--fg); font-family: var(--sans); font-size: 15px; line-height: 1.65; }
+.wrap { max-width: 980px; margin: 0 auto; padding-block: 40px 72px;
+  padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px));
+  display: grid; gap: 44px; }
+header { display: grid; gap: 10px; }
+.eyebrow { font-family: var(--mono); font-size: 12px; letter-spacing: .08em; color: var(--accent); text-transform: uppercase; }
+h1 { font-size: 30px; line-height: 1.25; margin: 0; text-wrap: balance; }
+h2 { font-size: 20px; margin: 0; text-wrap: balance; }
+h3 { font-size: 15px; margin: 0; }
+p { margin: 0; max-width: 68ch; }
+.lead { color: var(--muted); font-size: 16px; }
+section { display: grid; gap: 16px; min-width: 0; }
+.kpis { display: grid; grid-template-columns: repeat(auto-fit, minmax(170px, 1fr)); gap: 12px; }
+.kpi { background: var(--surface); border: 1px solid var(--line); border-radius: 8px; padding: 14px 16px; display: grid; gap: 4px; }
+.kpi b { font-family: var(--mono); font-size: 26px; font-weight: 500; font-variant-numeric: tabular-nums; }
+.kpi span { color: var(--muted); font-size: 13px; }
+.kpi.hl { border-color: var(--accent); background: var(--accent-soft); }
+.chart { background: var(--surface); border: 1px solid var(--line); border-radius: 8px; padding: 16px; overflow-x: auto; min-width: 0; }
+.chart svg { display: block; width: 100%; height: auto; min-width: 560px; }
+.chart svg text { fill: var(--fg); font-family: var(--sans); font-size: 12px; }
+.chart svg .mut { fill: var(--muted); }
+.chart svg .num { font-family: var(--mono); font-size: 11px; }
+.legend { display: flex; flex-wrap: wrap; gap: 6px 16px; font-size: 13px; color: var(--muted); margin-top: 10px; }
+.legend i { display: inline-block; width: 11px; height: 11px; border-radius: 2px; margin-right: 6px; vertical-align: -1px; }
+.tbl { overflow-x: auto; background: var(--surface); border: 1px solid var(--line); border-radius: 8px; }
+table { border-collapse: collapse; width: 100%; font-size: 13.5px; }
+th, td { text-align: left; padding: 8px 12px; border-bottom: 1px solid var(--line); white-space: nowrap; }
+td.note { white-space: normal; min-width: 220px; color: var(--muted); }
+th { font-weight: 500; color: var(--muted); font-size: 12.5px; }
+td.n, th.n { text-align: right; font-family: var(--mono); font-variant-numeric: tabular-nums; }
+tr:last-child td { border-bottom: 0; }
+.pill { display: inline-block; padding: 1px 8px; border-radius: 99px; font-size: 12px; color: var(--surface); font-weight: 500; }
+.two { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 16px; }
+.two > * { min-width: 0; }
+.box { background: var(--surface); border: 1px solid var(--line); border-radius: 8px; padding: 16px; display: grid; gap: 8px; }
+ul { margin: 0; padding-left: 20px; display: grid; gap: 4px; max-width: 70ch; }
+code { font-family: var(--mono); font-size: 12.5px; background: var(--accent-soft); padding: 1px 5px; border-radius: 4px; }
+.foot { color: var(--muted); font-size: 13px; }
+.tabs { display: flex; gap: 6px; flex-wrap: wrap; }
+.tabs button { font: inherit; font-size: 13px; padding: 5px 12px; border-radius: 6px; border: 1px solid var(--line); background: var(--surface); color: var(--fg); cursor: pointer; }
+.tabs button[aria-pressed="true"] { border-color: var(--accent); background: var(--accent-soft); color: var(--accent); font-weight: 500; }
+.tabs button:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+</style>
+
+<div class="wrap">
+  <header>
+    <div class="eyebrow">SO-101 양팔 · 수건 반접기 + 대문접기 · 2026-10-23</div>
+    <h1>B안 단일 모델 실물 평가: 관절 제한 12° 대 15°</h1>
+    <p class="lead">반접기가 깔끔한 시연 42개만 반접기를 가르치고, 나머지 28개는 대문접기와 집기 구간만 쓰도록 다시 구성한 데이터로 ACT 모델 하나를 학습했습니다. 같은 모델을 관절 제한 12°와 15°로 각각 10회 실물 평가했고, 기존 70개 통 모델(5회씩)과 트롤리를 조금 멀리 둔 조건(10회)도 함께 비교합니다.</p>
+  </header>
+
+  <section>
+    <h2>요약</h2>
+    <div class="kpis" id="kpis"></div>
+    <ul>
+      <li><b>lim12가 가장 좋았습니다.</b> 10회 중 8회 대문접기까지 성공했고, lim15는 7회입니다. 두 조건 모두 루프 속도(약 29.6Hz)와 관절 속도가 거의 같아, 차이는 1회로 우연 범위 안입니다.</li>
+      <li><b>실패는 대부분 오른손 집기입니다.</b> 가까운 거리 20회의 실패 5회 중 3회가 오른손 못 잡음이었고, 반접기 품질에 대한 메모는 70개 통 모델 때보다 확실히 좋아졌습니다.</li>
+      <li><b>트롤리를 멀리 두면 10회 중 1회만 성공했습니다.</b> 오른손은 거리와 상관없이 학습 때 외운 자세로 뻗고 닫습니다. 정책이 카메라를 보고 뻗는 거리를 늘리지 않습니다.</li>
+    </ul>
+  </section>
+
+  <section>
+    <h2>1. 조건별 결과</h2>
+    <p>결과 분류는 작업자가 시행마다 직접 입력했습니다. 막대 오른쪽 숫자는 대문접기까지 성공한 비율입니다.</p>
+    <div class="chart"><svg id="outcomes" viewBox="0 0 900 270" role="img" aria-label="조건별 결과 막대그래프"></svg>
+      <div class="legend" id="legend"></div></div>
+  </section>
+
+  <section>
+    <h2>2. 시간 분석</h2>
+    <p>trace의 그리퍼 값으로 단계 시각을 잡았습니다. 집기는 그리퍼가 20° 넘게 열린 뒤 처음 10° 아래로 닫힌 시각이고, 반접기 완료는 오른손이 수건을 놓은 시각(다시 20° 넘게 열림)입니다. 끝 시각은 작업자가 Enter로 멈춘 시각이라 사람 반응 시간이 몇 초 포함됩니다.</p>
+    <div class="tabs" role="group" aria-label="조건 선택">
+      <button type="button" id="tab-lim12" aria-pressed="true">B안 lim12</button>
+      <button type="button" id="tab-lim15" aria-pressed="false">B안 lim15</button>
+      <button type="button" id="tab-far" aria-pressed="false">B안 lim12 먼 거리</button>
+      <button type="button" id="tab-f70a" aria-pressed="false">70개 lim12</button>
+      <button type="button" id="tab-f70b" aria-pressed="false">70개 lim15</button>
+    </div>
+    <div class="chart"><svg id="timeline" viewBox="0 0 900 360" role="img" aria-label="시행별 단계 시각"></svg>
+      <div class="legend"><span><i style="background:var(--accent);opacity:.35"></i>시작~왼손 집기</span><span><i style="background:var(--accent);opacity:.6"></i>오른손 집기까지</span><span><i style="background:var(--accent)"></i>반접기(끌어서 놓기)</span><span><i style="background:var(--gate)"></i>대문접기~정지</span><span><i style="background:var(--nograsp)"></i>못 잡고 정지</span></div></div>
+    <div class="tbl"><table id="timing"></table></div>
+  </section>
+
+  <section>
+    <h2>3. 제어 상태</h2>
+    <p>관절 제한은 정책이 한 스텝에 움직일 수 있는 최대 각도이고, 모터 가드는 제한 +5°입니다. 사람 시연의 관절 속도는 p95가 37°/s였습니다.</p>
+    <div class="tbl"><table id="control"></table></div>
+    <p class="foot">관절 속도는 그리퍼를 뺀 10개 관절의 스텝 간 변화량입니다. 최대값은 한 스텝짜리 순간값이라 측정 잡음이 섞일 수 있어 참고만 하세요.</p>
+  </section>
+
+  <section>
+    <h2>4. 오른손 실패 원인</h2>
+    <p>오른손 그리퍼가 닫힌 순간의 shoulder_lift와 elbow_flex입니다. 먼 거리에서도 점들이 가까운 거리 성공 자세와 같은 자리에 모여 있습니다. 팔이 닿지 않는 것이 아니라, 정책이 수건 위치를 보고 팔을 더 뻗지 않는 것입니다.</p>
+    <div class="chart"><svg id="pose" viewBox="0 0 900 360" role="img" aria-label="오른손 집기 자세 산점도"></svg>
+      <div class="legend"><span><i style="background:var(--ok)"></i>가까운 거리, 집기 성공</span><span><i style="background:var(--nograsp)"></i>가까운 거리, 못 잡음</span><span><i style="background:transparent;border:2px solid var(--ok)"></i>먼 거리, 집기 성공</span><span><i style="background:transparent;border:2px solid var(--nograsp)"></i>먼 거리, 못 잡음</span></div></div>
+  </section>
+
+  <section>
+    <h2>5. 학습 방법</h2>
+    <p>70개 시연을 웹에서 하나씩 보고 반접기가 완벽한 42개(good)와 나머지 28개(bad)로 나눴습니다. bad 시연도 버리지 않고, 쓸 만한 구간만 잘라 넣었습니다.</p>
+    <div class="chart"><svg id="data" viewBox="0 0 900 190" role="img" aria-label="학습 데이터 구성"></svg></div>
+    <div class="two">
+      <div class="box"><h3>데이터 구성 (98개 에피소드)</h3>
+        <ul>
+          <li><b>good 42개 전체</b>: 반접기부터 대문접기까지 이어진 동작. 반접기와 단계 전환은 여기서만 배웁니다.</li>
+          <li><b>bad 28개의 대문접기 구간</b>: 반접기가 덜 정확한 상태에서 시작하는 대문접기라 시작 장면이 다양해집니다.</li>
+          <li><b>bad 28개의 집기 구간</b>: 반접기 시작부터 두 손이 다 닫힌 뒤 15프레임까지. 첫 집기에 실패해 다시 잡은 6개(ep9, 20, 28, 54, 62, 64)는 다시 닫은 시점까지 늘렸습니다.</li>
+          <li>잘린 구간 끝 뒤의 동작은 패딩으로 표시돼 학습 손실에서 빠집니다. 그래서 "잡고 멈추기"를 배우지 않습니다.</li>
+        </ul></div>
+      <div class="box"><h3>학습 설정</h3>
+        <div class="tbl" style="border:0"><table>
+          <tr><td>정책</td><td>ACT (ResNet18, VAE, kl_weight 10)</td></tr>
+          <tr><td>입력</td><td>관절 12개 + 카메라 4대 (왼/오 손목, Astra RGB, 뎁스)</td></tr>
+          <tr><td>청크</td><td class="n">100 스텝 (실행도 100)</td></tr>
+          <tr><td>배치 · 학습률</td><td class="n">8 · 1e-5</td></tr>
+          <tr><td>스텝</td><td class="n">65,000 (5.0 epoch)</td></tr>
+          <tr><td>장비</td><td>RTX 4090 (workstation4)</td></tr>
+          <tr><td>학습 시간</td><td class="n">약 1시간 38분</td></tr>
+        </table></div>
+        <p class="foot">학습 시간은 체크포인트 저장 시각으로 계산했습니다. 1만 스텝마다 약 15분이 걸렸고(초당 약 11스텝), 10000 스텝 체크포인트가 12:57, 65000 스텝 체크포인트가 14:20에 저장됐습니다.</p></div>
+    </div>
+  </section>
+
+  <section>
+    <h2>6. 시행별 기록</h2>
+    <div class="tabs" role="group" aria-label="기록 조건 선택">
+      <button type="button" id="rec-lim12" aria-pressed="true">B안 lim12</button>
+      <button type="button" id="rec-lim15" aria-pressed="false">B안 lim15</button>
+      <button type="button" id="rec-far" aria-pressed="false">B안 lim12 먼 거리</button>
+    </div>
+    <div class="tbl"><table id="records"></table></div>
+  </section>
+
+  <section>
+    <h2>7. 결론과 다음 단계</h2>
+    <ul>
+      <li><b>기본 설정은 lim12로 정합니다.</b> 가까운 거리에서 8/10이고 루프 속도도 lim15와 같습니다. 모터가 걸렸을 때 덜 세게 미는 쪽이 안전합니다.</li>
+      <li><b>데이터 재구성은 효과가 있었습니다.</b> 70개 통 모델은 메모마다 "반접기 미흡"이 나왔지만, B안은 반접기 불만 메모가 거의 없습니다. 70개 모델은 5회씩만 시험해 성공률을 직접 비교하기에는 횟수가 부족합니다.</li>
+      <li><b>거리 문제는 이동 장치 쪽에서 맞춥니다.</b> 트롤리 정지 위치를 성공한 거리 기준 ± 허용오차로 맞추고(<code>towel_station.py</code> 뎁스 기준 고정), L자 테이프로 좌우 위치와 각도를 마지막에 확인합니다. 남는 몇 cm는 손목 카메라 모서리 보정으로 흡수하는 방안을 검토합니다.</li>
+      <li><b>먼저 잴 것</b>: 성공 위치와 먼 위치의 뎁스 차이(mm). 이 값이 있어야 허용오차를 정할 수 있습니다.</li>
+    </ul>
+    <p class="foot">자료: <code>~/towel_eval_logs/act_half42_1023_{lim12,lim15,lim12_far}</code>, <code>act_wide_full70_1023_{lim12,lim15}</code>의 results.csv와 trace/actions.jsonl. 모델: <code>outputs/train/act_half42_gate28_grasp28/checkpoints/065000</code>.</p>
+  </section>
+</div>
+
+<script>
+const DATA = {"act_half42_1023_lim15":[{"trial":"01","outcome":"full_success","note":"흠잡을 곳 없이 완성","dur":45.5,"steps":1347,"hz":29.6,"l_grasp":4.6,"r_grasp":8.5,"l_rel":17.4,"r_rel":18.1,"vel_p95":41.2,"vel_max":342.8,"r_pose":[17.9,20.7,32.2]},{"trial":"02","outcome":"no_grasp","note":"수건이 조금 멀면 오른손 집기가 어려움","dur":17.9,"steps":527,"hz":29.4,"l_grasp":6.0,"r_grasp":11.4,"l_rel":null,"r_rel":null,"vel_p95":40.1,"vel_max":195.9,"r_pose":[18.2,21.3,30.5]},{"trial":"03","outcome":"full_success","note":"성공. 카메라 케이블이 작업 영역에 걸릴 수 있음","dur":44.9,"steps":1330,"hz":29.6,"l_grasp":4.4,"r_grasp":8.2,"l_rel":16.2,"r_rel":16.8,"vel_p95":42.5,"vel_max":223.4,"r_pose":[19.2,19.3,34.1]},{"trial":"04","outcome":"no_grasp","note":"오른손 집기 불안정","dur":16.7,"steps":490,"hz":29.3,"l_grasp":5.4,"r_grasp":9.7,"l_rel":null,"r_rel":null,"vel_p95":45.0,"vel_max":155.5,"r_pose":[19.2,23.9,28.4]},{"trial":"05","outcome":"full_success","note":"매우 깔끔하게 완성","dur":50.2,"steps":1489,"hz":29.6,"l_grasp":5.6,"r_grasp":10.1,"l_rel":18.1,"r_rel":19.3,"vel_p95":39.9,"vel_max":462.4,"r_pose":[18.1,22.8,28.8]},{"trial":"06","outcome":"full_success","note":"성공으로 기록. 오른쪽 대문접기 미흡","dur":49.5,"steps":1465,"hz":29.6,"l_grasp":4.9,"r_grasp":9.6,"l_rel":18.4,"r_rel":19.5,"vel_p95":38.4,"vel_max":241.8,"r_pose":[19.4,22.2,28.6]},{"trial":"07","outcome":"full_success","note":"성공. 왼쪽 대문접기에서 한 겹만 잡힘","dur":46.3,"steps":1368,"hz":29.6,"l_grasp":5.4,"r_grasp":10.1,"l_rel":17.9,"r_rel":19.3,"vel_p95":44.3,"vel_max":217.9,"r_pose":[18.5,20.0,33.5]},{"trial":"08","outcome":"full_success","note":"성공. 오른쪽이 살짝 덜 접힘","dur":55.8,"steps":1656,"hz":29.7,"l_grasp":4.8,"r_grasp":9.6,"l_rel":18.6,"r_rel":19.6,"vel_p95":37.8,"vel_max":334.5,"r_pose":[17.2,25.0,26.4]},{"trial":"09","outcome":"right_gate","note":"왼쪽 대문접기 때 작업자가 수건을 조금 당겨 줌(개입)","dur":60.3,"steps":1789,"hz":29.7,"l_grasp":6.0,"r_grasp":11.1,"l_rel":19.8,"r_rel":20.6,"vel_p95":38.5,"vel_max":454.0,"r_pose":[19.9,20.9,30.1]},{"trial":"10","outcome":"full_success","note":"깔끔하게 완성","dur":49.4,"steps":1463,"hz":29.6,"l_grasp":5.4,"r_grasp":9.9,"l_rel":18.3,"r_rel":19.3,"vel_p95":40.2,"vel_max":234.1,"r_pose":[16.7,25.1,25.0]}],"act_half42_1023_lim12":[{"trial":"01","outcome":"full_success","note":"깔끔하게 완성","dur":47.3,"steps":1399,"hz":29.6,"l_grasp":5.2,"r_grasp":9.9,"l_rel":18.3,"r_rel":19.4,"vel_p95":44.6,"vel_max":161.6,"r_pose":[18.2,23.4,27.4]},{"trial":"02","outcome":"full_success","note":"성공","dur":50.6,"steps":1497,"hz":29.6,"l_grasp":6.0,"r_grasp":11.0,"l_rel":20.0,"r_rel":20.7,"vel_p95":41.2,"vel_max":428.7,"r_pose":[19.4,20.4,31.5]},{"trial":"03","outcome":"half_only","note":"반접기 후 대문접기로 넘어가지 못함","dur":48.0,"steps":1424,"hz":29.7,"l_grasp":5.5,"r_grasp":10.4,"l_rel":19.3,"r_rel":20.0,"vel_p95":32.7,"vel_max":211.5,"r_pose":[18.2,24.6,26.2]},{"trial":"04","outcome":"full_success","note":"성공. 왼쪽 대문접기에서 한 겹만 잡힘","dur":48.4,"steps":1432,"hz":29.6,"l_grasp":5.6,"r_grasp":11.0,"l_rel":19.4,"r_rel":20.4,"vel_p95":38.8,"vel_max":407.0,"r_pose":[20.5,18.5,32.2]},{"trial":"05","outcome":"full_success","note":"깔끔하게 완성","dur":51.5,"steps":1530,"hz":29.7,"l_grasp":4.6,"r_grasp":9.6,"l_rel":18.3,"r_rel":19.4,"vel_p95":41.3,"vel_max":217.0,"r_pose":[18.2,25.8,24.4]},{"trial":"06","outcome":"full_success","note":"성공. 카메라 케이블 간섭 우려","dur":48.8,"steps":1449,"hz":29.7,"l_grasp":5.7,"r_grasp":9.9,"l_rel":18.7,"r_rel":19.8,"vel_p95":41.7,"vel_max":235.6,"r_pose":[19.6,24.2,26.7]},{"trial":"07","outcome":"full_success","note":"깔끔하게 완성","dur":49.6,"steps":1469,"hz":29.6,"l_grasp":4.8,"r_grasp":9.7,"l_rel":19.3,"r_rel":20.2,"vel_p95":39.6,"vel_max":267.2,"r_pose":[18.2,23.7,27.8]},{"trial":"08","outcome":"full_success","note":"성공. 카메라 케이블 간섭 우려","dur":49.8,"steps":1472,"hz":29.6,"l_grasp":5.6,"r_grasp":10.2,"l_rel":19.1,"r_rel":20.0,"vel_p95":42.0,"vel_max":305.0,"r_pose":[17.5,24.9,26.9]},{"trial":"09","outcome":"no_grasp","note":"오른손 집기 실패","dur":10.5,"steps":305,"hz":29.1,"l_grasp":5.0,"r_grasp":9.0,"l_rel":null,"r_rel":null,"vel_p95":33.2,"vel_max":126.8,"r_pose":[19.6,20.7,32.2]},{"trial":"10","outcome":"full_success","note":"성공","dur":49.4,"steps":1463,"hz":29.6,"l_grasp":5.4,"r_grasp":9.7,"l_rel":18.7,"r_rel":19.7,"vel_p95":43.9,"vel_max":349.5,"r_pose":[16.9,22.5,29.2]}],"act_half42_1023_lim12_far":[{"trial":"01","outcome":"no_grasp","note":"거리 때문에 오른손 집기 실패","dur":12.3,"steps":358,"hz":29.2,"l_grasp":5.8,"r_grasp":12.2,"l_rel":null,"r_rel":null,"vel_p95":29.0,"vel_max":214.4,"r_pose":[18.2,22.1,29.9]},{"trial":"02","outcome":"no_grasp","note":"오른손 집기 실패","dur":18.6,"steps":547,"hz":29.4,"l_grasp":5.9,"r_grasp":11.6,"l_rel":null,"r_rel":null,"vel_p95":39.8,"vel_max":268.3,"r_pose":[16.2,20.3,30.9]},{"trial":"03","outcome":"no_grasp","note":"오른손 집기 실패","dur":17.6,"steps":514,"hz":29.2,"l_grasp":5.7,"r_grasp":11.5,"l_rel":null,"r_rel":null,"vel_p95":40.8,"vel_max":144.0,"r_pose":[18.2,22.8,28.1]},{"trial":"04","outcome":"half_only","note":"진행이 좋다가 오른쪽 대문접기가 틀어져 실패","dur":41.6,"steps":1230,"hz":29.6,"l_grasp":5.1,"r_grasp":9.8,"l_rel":18.6,"r_rel":19.6,"vel_p95":34.0,"vel_max":277.6,"r_pose":[17.6,22.2,28.0]},{"trial":"05","outcome":"right_gate","note":"오른쪽 대문접기까지 진행(원인 불명)","dur":67.9,"steps":2016,"hz":29.7,"l_grasp":4.8,"r_grasp":9.8,"l_rel":19.5,"r_rel":20.5,"vel_p95":29.2,"vel_max":274.6,"r_pose":[18.3,23.7,27.0]},{"trial":"06","outcome":"no_grasp","note":"오른손 집기 실패","dur":13.5,"steps":395,"hz":29.2,"l_grasp":4.8,"r_grasp":9.8,"l_rel":null,"r_rel":null,"vel_p95":42.6,"vel_max":132.9,"r_pose":[16.3,23.6,28.8]},{"trial":"07","outcome":"no_grasp","note":"오른손 집기 실패","dur":17.0,"steps":500,"hz":29.4,"l_grasp":5.4,"r_grasp":11.6,"l_rel":null,"r_rel":null,"vel_p95":37.9,"vel_max":178.1,"r_pose":[16.5,20.8,30.6]},{"trial":"08","outcome":"no_grasp","note":"오른손 집기 실패","dur":11.7,"steps":339,"hz":29.0,"l_grasp":4.8,"r_grasp":9.7,"l_rel":null,"r_rel":null,"vel_p95":42.3,"vel_max":234.3,"r_pose":[15.9,21.5,30.9]},{"trial":"09","outcome":"no_grasp","note":"오른손 집기 실패","dur":16.3,"steps":479,"hz":29.3,"l_grasp":4.7,"r_grasp":9.3,"l_rel":null,"r_rel":null,"vel_p95":39.6,"vel_max":258.8,"r_pose":[16.0,18.2,34.3]},{"trial":"10","outcome":"full_success","note":"성공(원인 불명)","dur":49.5,"steps":1464,"hz":29.6,"l_grasp":5.4,"r_grasp":10.5,"l_rel":20.1,"r_rel":21.1,"vel_p95":39.3,"vel_max":277.5,"r_pose":[17.8,20.2,31.5]}],"act_wide_full70_1023_lim12":[{"trial":"01","outcome":"right_gate","note":"왼쪽 대문접기 실패","dur":44.7,"steps":1322,"hz":29.6,"l_grasp":4.7,"r_grasp":9.2,"l_rel":18.3,"r_rel":19.1,"vel_p95":31.9,"vel_max":175.6,"r_pose":[18.9,19.3,35.1]},{"trial":"02","outcome":"full_success","note":"성공. 반접기 미완성","dur":49.9,"steps":1440,"hz":28.8,"l_grasp":4.5,"r_grasp":9.2,"l_rel":18.1,"r_rel":19.1,"vel_p95":41.3,"vel_max":264.9,"r_pose":[19.4,21.9,28.4]},{"trial":"03","outcome":"full_success","note":"성공. 왼쪽 미흡, 반접기 불완전","dur":55.1,"steps":1631,"hz":29.6,"l_grasp":7.1,"r_grasp":11.6,"l_rel":20.0,"r_rel":21.0,"vel_p95":39.6,"vel_max":245.0,"r_pose":[19.4,21.9,30.5]},{"trial":"04","outcome":"full_success","note":"성공. 대문접기 완성도 부족","dur":53.7,"steps":1590,"hz":29.6,"l_grasp":5.5,"r_grasp":10.4,"l_rel":19.9,"r_rel":21.2,"vel_p95":36.9,"vel_max":314.2,"r_pose":[20.1,20.5,31.4]},{"trial":"05","outcome":"full_success","note":"성공. 반접기 보완 필요","dur":74.2,"steps":2201,"hz":29.7,"l_grasp":5.3,"r_grasp":9.6,"l_rel":18.3,"r_rel":19.2,"vel_p95":30.8,"vel_max":263.7,"r_pose":[19.0,22.2,29.6]}],"act_wide_full70_1023_lim15":[{"trial":"01","outcome":"full_success","note":"깔끔하게 완성","dur":62.2,"steps":1846,"hz":29.7,"l_grasp":5.2,"r_grasp":9.3,"l_rel":17.0,"r_rel":18.5,"vel_p95":35.3,"vel_max":161.3,"r_pose":[19.2,24.4,27.1]},{"trial":"02","outcome":"full_success","note":"성공. 왼쪽 미흡, 반접기 미숙","dur":55.8,"steps":1656,"hz":29.7,"l_grasp":5.7,"r_grasp":11.9,"l_rel":19.9,"r_rel":20.8,"vel_p95":36.9,"vel_max":328.3,"r_pose":[18.6,26.2,28.1]},{"trial":"03","outcome":"full_success","note":"성공. 반접기 불완전","dur":49.9,"steps":1480,"hz":29.7,"l_grasp":5.1,"r_grasp":9.4,"l_rel":19.3,"r_rel":20.3,"vel_p95":38.4,"vel_max":202.7,"r_pose":[18.3,24.6,27.7]},{"trial":"04","outcome":"right_gate","note":"반접기만 안정되면 성공 가능해 보임","dur":55.8,"steps":1661,"hz":29.8,"l_grasp":4.9,"r_grasp":9.3,"l_rel":18.1,"r_rel":18.9,"vel_p95":27.6,"vel_max":246.2,"r_pose":[18.2,22.1,31.8]},{"trial":"05","outcome":"half_only","note":"반접기 미숙","dur":49.4,"steps":1466,"hz":29.7,"l_grasp":5.1,"r_grasp":9.2,"l_rel":18.1,"r_rel":19.0,"vel_p95":31.0,"vel_max":200.8,"r_pose":[18.2,24.7,26.8]}]};
+const COND = [
+  ["act_half42_1023_lim12", "B안 lim12", "lim12"],
+  ["act_half42_1023_lim15", "B안 lim15", "lim15"],
+  ["act_half42_1023_lim12_far", "B안 lim12 먼 거리", "far"],
+  ["act_wide_full70_1023_lim12", "70개 lim12", "f70a"],
+  ["act_wide_full70_1023_lim15", "70개 lim15", "f70b"],
+];
+const OUT = [
+  ["full_success", "대문접기까지 성공", "--ok"],
+  ["right_gate", "오른쪽 대문접기까지", "--gate"],
+  ["half_only", "반접기만", "--half"],
+  ["grasp_fold_fail", "잡았지만 못 접음", "--fail"],
+  ["no_grasp", "못 잡음", "--nograsp"],
+];
+const OUTMAP = Object.fromEntries(OUT.map(o => [o[0], o]));
+const NS = "http://www.w3.org/2000/svg";
+const el = (tag, attrs, text) => { const e = document.createElementNS(NS, tag); for (const k in attrs) e.setAttribute(k, attrs[k]); if (text != null) e.textContent = text; return e; };
+const mean = a => a.length ? a.reduce((s, v) => s + v, 0) / a.length : NaN;
+const f1 = v => Number.isFinite(v) ? v.toFixed(1) : "–";
+const count = (t, o) => t.filter(x => x.outcome === o).length;
+
+// 요약 수치
+(() => {
+  const k = document.getElementById("kpis");
+  const items = [
+    ["act_half42_1023_lim12", "B안 lim12 대문접기 성공", true],
+    ["act_half42_1023_lim15", "B안 lim15 대문접기 성공", false],
+    ["act_half42_1023_lim12_far", "트롤리 먼 거리 (lim12)", false],
+    ["act_wide_full70_1023_lim12", "70개 통 모델 lim12", false],
+  ];
+  for (const [key, label, hl] of items) {
+    const t = DATA[key];
+    const d = document.createElement("div"); d.className = "kpi" + (hl ? " hl" : "");
+    d.innerHTML = `<b>${count(t, "full_success")}/${t.length}</b><span>${label}</span>`;
+    k.appendChild(d);
+  }
+})();
+
+// 1. 조건별 결과 누적 막대
+(() => {
+  const svg = document.getElementById("outcomes");
+  const x0 = 170, W = 620, rowH = 46, top = 16;
+  for (let i = 0; i <= 10; i += 2) {
+    const x = x0 + W * i / 10;
+    svg.append(el("line", {x1: x, x2: x, y1: top - 4, y2: top + rowH * COND.length - 8, stroke: "var(--line)"}));
+    svg.append(el("text", {x, y: top + rowH * COND.length + 8, "text-anchor": "middle", class: "mut num"}, i + "회"));
+  }
+  COND.forEach(([key, label], r) => {
+    const t = DATA[key], y = top + r * rowH;
+    svg.append(el("text", {x: x0 - 12, y: y + 20, "text-anchor": "end"}, label));
+    let x = x0;
+    for (const [o, , c] of OUT) {
+      const n = count(t, o); if (!n) continue;
+      const w = W * n / 10;
+      svg.append(el("rect", {x: x + 1, y: y + 4, width: w - 2, height: 26, rx: 3, fill: `var(${c})`}));
+      if (w > 22) svg.append(el("text", {x: x + w / 2, y: y + 21, "text-anchor": "middle", class: "num", style: "fill:var(--surface);font-weight:500"}, n));
+      x += w;
+    }
+    const pct = Math.round(100 * count(t, "full_success") / t.length);
+    svg.append(el("text", {x: x0 + W + 14, y: y + 21, class: "num", style: "font-size:13px"}, `${pct}%  (${count(t, "full_success")}/${t.length})`));
+  });
+  document.getElementById("legend").innerHTML = OUT.map(o => `<span><i style="background:var(${o[2]})"></i>${o[1]}</span>`).join("");
+})();
+
+// 2. 시행별 단계 시각
+const TL = document.getElementById("timeline");
+function drawTimeline(key) {
+  TL.replaceChildren();
+  const t = DATA[key], x0 = 90, W = 760, maxS = 80, rowH = 30, top = 14;
+  const sx = s => x0 + W * Math.min(s, maxS) / maxS;
+  TL.setAttribute("viewBox", `0 0 900 ${top + rowH * t.length + 34}`);
+  for (let s = 0; s <= maxS; s += 10) {
+    TL.append(el("line", {x1: sx(s), x2: sx(s), y1: top - 4, y2: top + rowH * t.length, stroke: "var(--line)"}));
+    TL.append(el("text", {x: sx(s), y: top + rowH * t.length + 16, "text-anchor": "middle", class: "mut num"}, s + "s"));
+  }
+  t.forEach((r, i) => {
+    const y = top + i * rowH;
+    TL.append(el("text", {x: 10, y: y + 17, class: "num"}, "#" + r.trial));
+    TL.append(el("circle", {cx: 60, cy: y + 13, r: 5, fill: `var(${OUTMAP[r.outcome][2]})`}));
+    const seg = (a, b, fill, op) => { if (a == null || b == null || b <= a) return; TL.append(el("rect", {x: sx(a), y: y + 4, width: Math.max(1, sx(b) - sx(a)), height: 18, fill, opacity: op})); };
+    if (r.r_rel == null) {
+      seg(0, r.l_grasp, "var(--accent)", .35); seg(r.l_grasp, r.r_grasp, "var(--accent)", .6); seg(r.r_grasp, r.dur, "var(--nograsp)", .85);
+    } else {
+      seg(0, r.l_grasp, "var(--accent)", .35); seg(r.l_grasp, r.r_grasp, "var(--accent)", .6);
+      seg(r.r_grasp, r.r_rel, "var(--accent)", 1); seg(r.r_rel, r.dur, "var(--gate)", .85);
+    }
+    TL.append(el("text", {x: sx(r.dur) + 6, y: y + 17, class: "num mut"}, f1(r.dur) + "s"));
+  });
+}
+function timingTable() {
+  const rows = COND.map(([key, label]) => {
+    const t = DATA[key], ok = t.filter(r => r.outcome === "full_success");
+    return `<tr><td>${label}</td><td class="n">${ok.length}</td><td class="n">${f1(mean(t.map(r => r.l_grasp)))}</td><td class="n">${f1(mean(t.map(r => r.r_grasp)))}</td>
+      <td class="n">${f1(mean(ok.map(r => r.r_rel)))}</td><td class="n">${f1(mean(ok.map(r => r.dur - r.r_rel)))}</td><td class="n">${f1(mean(ok.map(r => r.dur)))}</td></tr>`;
+  }).join("");
+  document.getElementById("timing").innerHTML = `<tr><th>조건</th><th class="n">성공 수</th><th class="n">왼손 집기 (s)</th><th class="n">오른손 집기 (s)</th><th class="n">반접기 완료 (s, 성공만)</th><th class="n">대문접기~정지 (s, 성공만)</th><th class="n">전체 (s, 성공만)</th></tr>` + rows;
+}
+const TABS = {lim12: "act_half42_1023_lim12", lim15: "act_half42_1023_lim15", far: "act_half42_1023_lim12_far", f70a: "act_wide_full70_1023_lim12", f70b: "act_wide_full70_1023_lim15"};
+for (const id in TABS) document.getElementById("tab-" + id).addEventListener("click", e => {
+  document.querySelectorAll('[id^="tab-"]').forEach(b => b.setAttribute("aria-pressed", b === e.currentTarget));
+  drawTimeline(TABS[id]);
+});
+drawTimeline(TABS.lim12); timingTable();
+
+// 3. 제어 상태 표
+document.getElementById("control").innerHTML = `<tr><th>조건</th><th class="n">관절 제한</th><th class="n">모터 가드</th><th class="n">실제 루프 (Hz)</th><th class="n">관절 속도 p95 (°/s)</th><th class="n">순간 최대 (°/s)</th></tr>` +
+  COND.map(([key, label]) => { const t = DATA[key], lim = key.includes("lim15") ? 15 : 12;
+    return `<tr><td>${label}</td><td class="n">${lim}°</td><td class="n">${lim + 5}°</td><td class="n">${f1(mean(t.map(r => r.hz)))}</td><td class="n">${f1(mean(t.map(r => r.vel_p95)))}</td><td class="n">${Math.round(Math.max(...t.map(r => r.vel_max)))}</td></tr>`; }).join("");
+
+// 4. 오른손 집기 자세 산점도 (shoulder_lift vs elbow_flex)
+(() => {
+  const svg = document.getElementById("pose"), x0 = 70, y0 = 20, W = 790, H = 290;
+  const xr = [16, 28], yr = [22, 37];
+  const sx = v => x0 + W * (v - xr[0]) / (xr[1] - xr[0]), sy = v => y0 + H - H * (v - yr[0]) / (yr[1] - yr[0]);
+  for (let v = xr[0]; v <= xr[1]; v += 2) { svg.append(el("line", {x1: sx(v), x2: sx(v), y1: y0, y2: y0 + H, stroke: "var(--line)"})); svg.append(el("text", {x: sx(v), y: y0 + H + 16, "text-anchor": "middle", class: "mut num"}, v + "°")); }
+  for (let v = yr[0] + 1; v <= yr[1]; v += 3) { svg.append(el("line", {x1: x0, x2: x0 + W, y1: sy(v), y2: sy(v), stroke: "var(--line)"})); svg.append(el("text", {x: x0 - 8, y: sy(v) + 4, "text-anchor": "end", class: "mut num"}, v + "°")); }
+  svg.append(el("text", {x: x0 + W / 2, y: y0 + H + 36, "text-anchor": "middle", class: "mut"}, "오른팔 shoulder_lift (집는 순간)"));
+  svg.append(el("text", {x: 14, y: y0 + H / 2, transform: `rotate(-90 14 ${y0 + H / 2})`, "text-anchor": "middle", class: "mut"}, "elbow_flex"));
+  const pts = [...DATA.act_half42_1023_lim12.map(r => [r, false]), ...DATA.act_half42_1023_lim15.map(r => [r, false]), ...DATA.act_half42_1023_lim12_far.map(r => [r, true])];
+  for (const [r, far] of pts) {
+    const c = r.outcome === "no_grasp" ? "var(--nograsp)" : "var(--ok)";
+    const p = far ? el("circle", {cx: sx(r.r_pose[1]), cy: sy(r.r_pose[2]), r: 6, fill: "var(--surface)", stroke: c, "stroke-width": 2.2})
+                  : el("circle", {cx: sx(r.r_pose[1]), cy: sy(r.r_pose[2]), r: 5, fill: c, opacity: .85});
+    p.append(el("title", {}, `${far ? "먼 거리" : "가까운 거리"} #${r.trial} ${OUTMAP[r.outcome][1]} · lift ${r.r_pose[1]}° elbow ${r.r_pose[2]}°`));
+    svg.append(p);
+  }
+})();
+
+// 5. 데이터 구성 막대 (프레임 기준)
+(() => {
+  const svg = document.getElementById("data"), x0 = 20, W = 860, total = 104011;
+  const parts = [["good 42개 전체", 68472, 42, 54.3, "var(--accent)"], ["bad 28개 대문접기 구간", 24417, 28, 29.1, "var(--gate)"], ["bad 28개 집기 구간", 11122, 28, 13.2, "var(--half)"]];
+  let x = x0;
+  svg.append(el("text", {x: x0, y: 18, class: "mut"}, "프레임 104,011개 (30fps, 약 58분) · 에피소드 98개"));
+  parts.forEach(([label, n, ep, sec, c], i) => {
+    const w = W * n / total, last = i === parts.length - 1;
+    const tx = last ? x + w - 4 : x + 6, anchor = last ? "end" : "start";  // 마지막 칸은 좁아서 오른쪽 끝에 맞춘다
+    svg.append(el("rect", {x: x + 1, y: 32, width: w - 2, height: 40, rx: 3, fill: c}));
+    svg.append(el("text", {x: tx, y: 96, "text-anchor": anchor, style: "font-weight:500"}, label));
+    svg.append(el("text", {x: tx, y: 114, "text-anchor": anchor, class: "num mut"}, `${n.toLocaleString()}프레임 · ${Math.round(100 * n / total)}%`));
+    svg.append(el("text", {x: tx, y: 131, "text-anchor": anchor, class: "num mut"}, `평균 ${sec}s/개`));
+    x += w;
+  });
+  svg.append(el("text", {x: x0, y: 168, class: "mut"}, "집기 장면은 70개 모두, 끌기·놓기(반접기)는 good 42개, 대문접기는 70개 모두에서 배웁니다."));
+})();
+
+// 6. 시행별 기록
+const RECS = {lim12: "act_half42_1023_lim12", lim15: "act_half42_1023_lim15", far: "act_half42_1023_lim12_far"};
+function drawRecords(key) {
+  document.getElementById("records").innerHTML = `<tr><th>시행</th><th>결과</th><th class="n">오른손 집기 (s)</th><th class="n">반접기 완료 (s)</th><th class="n">정지 (s)</th><th>작업자 메모</th></tr>` +
+    DATA[key].map(r => { const o = OUTMAP[r.outcome];
+      return `<tr><td class="n">${r.trial}</td><td><span class="pill" style="background:var(${o[2]})">${o[1]}</span></td><td class="n">${f1(r.r_grasp)}</td><td class="n">${f1(r.r_rel ?? NaN)}</td><td class="n">${f1(r.dur)}</td><td class="note"></td></tr>`; }).join("");
+  // 메모는 textContent로 넣는다
+  [...document.querySelectorAll("#records td.note")].forEach((td, i) => td.textContent = DATA[key][i].note);
+}
+for (const id in RECS) document.getElementById("rec-" + id).addEventListener("click", e => {
+  document.querySelectorAll('[id^="rec-"]').forEach(b => b.setAttribute("aria-pressed", b === e.currentTarget));
+  drawRecords(RECS[id]);
+});
+drawRecords(RECS.lim12);
+</script>

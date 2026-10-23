@@ -1,0 +1,11 @@
+trial,outcome,note,time
+01,full_success,깔끔하게 완성,15:09:36
+02,full_success,성공,15:11:00
+03,half_only,반접기 후 대문접기로 넘어가지 못함,15:12:13
+04,full_success,성공. 왼쪽 대문접기에서 한 겹만 잡힘,15:13:51
+05,full_success,깔끔하게 완성,15:15:05
+06,full_success,성공. 카메라 케이블 간섭 우려,15:16:19
+07,full_success,깔끔하게 완성,15:17:32
+08,full_success,성공. 카메라 케이블 간섭 우려,15:18:45
+09,no_grasp,오른손 집기 실패,15:19:29
+10,full_success,성공,15:20:55

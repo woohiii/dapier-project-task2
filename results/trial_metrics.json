@@ -1,0 +1,772 @@
+{
+ "act_half42_1023_lim15": [
+  {
+   "trial": "01",
+   "outcome": "full_success",
+   "note": "흠잡을 곳 없이 완성",
+   "dur": 45.5,
+   "steps": 1347,
+   "hz": 29.6,
+   "l_grasp": 4.6,
+   "r_grasp": 8.5,
+   "l_rel": 17.4,
+   "r_rel": 18.1,
+   "vel_p95": 41.2,
+   "vel_max": 342.8,
+   "r_pose": [
+    17.9,
+    20.7,
+    32.2
+   ]
+  },
+  {
+   "trial": "02",
+   "outcome": "no_grasp",
+   "note": "수건이 조금 멀면 오른손 집기가 어려움",
+   "dur": 17.9,
+   "steps": 527,
+   "hz": 29.4,
+   "l_grasp": 6.0,
+   "r_grasp": 11.4,
+   "l_rel": null,
+   "r_rel": null,
+   "vel_p95": 40.1,
+   "vel_max": 195.9,
+   "r_pose": [
+    18.2,
+    21.3,
+    30.5
+   ]
+  },
+  {
+   "trial": "03",
+   "outcome": "full_success",
+   "note": "성공. 카메라 케이블이 작업 영역에 걸릴 수 있음",
+   "dur": 44.9,
+   "steps": 1330,
+   "hz": 29.6,
+   "l_grasp": 4.4,
+   "r_grasp": 8.2,
+   "l_rel": 16.2,
+   "r_rel": 16.8,
+   "vel_p95": 42.5,
+   "vel_max": 223.4,
+   "r_pose": [
+    19.2,
+    19.3,
+    34.1
+   ]
+  },
+  {
+   "trial": "04",
+   "outcome": "no_grasp",
+   "note": "오른손 집기 불안정",
+   "dur": 16.7,
+   "steps": 490,
+   "hz": 29.3,
+   "l_grasp": 5.4,
+   "r_grasp": 9.7,
+   "l_rel": null,
+   "r_rel": null,
+   "vel_p95": 45.0,
+   "vel_max": 155.5,
+   "r_pose": [
+    19.2,
+    23.9,
+    28.4
+   ]
+  },
+  {
+   "trial": "05",
+   "outcome": "full_success",
+   "note": "매우 깔끔하게 완성",
+   "dur": 50.2,
+   "steps": 1489,
+   "hz": 29.6,
+   "l_grasp": 5.6,
+   "r_grasp": 10.1,
+   "l_rel": 18.1,
+   "r_rel": 19.3,
+   "vel_p95": 39.9,
+   "vel_max": 462.4,
+   "r_pose": [
+    18.1,
+    22.8,
+    28.8
+   ]
+  },
+  {
+   "trial": "06",
+   "outcome": "full_success",
+   "note": "성공으로 기록. 오른쪽 대문접기 미흡",
+   "dur": 49.5,
+   "steps": 1465,
+   "hz": 29.6,
+   "l_grasp": 4.9,
+   "r_grasp": 9.6,
+   "l_rel": 18.4,
+   "r_rel": 19.5,
+   "vel_p95": 38.4,
+   "vel_max": 241.8,
+   "r_pose": [
+    19.4,
+    22.2,
+    28.6
+   ]
+  },
+  {
+   "trial": "07",
+   "outcome": "full_success",
+   "note": "성공. 왼쪽 대문접기에서 한 겹만 잡힘",
+   "dur": 46.3,
+   "steps": 1368,
+   "hz": 29.6,
+   "l_grasp": 5.4,
+   "r_grasp": 10.1,
+   "l_rel": 17.9,
+   "r_rel": 19.3,
+   "vel_p95": 44.3,
+   "vel_max": 217.9,
+   "r_pose": [
+    18.5,
+    20.0,
+    33.5
+   ]
+  },
+  {
+   "trial": "08",
+   "outcome": "full_success",
+   "note": "성공. 오른쪽이 살짝 덜 접힘",
+   "dur": 55.8,
+   "steps": 1656,
+   "hz": 29.7,
+   "l_grasp": 4.8,
+   "r_grasp": 9.6,
+   "l_rel": 18.6,
+   "r_rel": 19.6,
+   "vel_p95": 37.8,
+   "vel_max": 334.5,
+   "r_pose": [
+    17.2,
+    25.0,
+    26.4
+   ]
+  },
+  {
+   "trial": "09",
+   "outcome": "right_gate",
+   "note": "왼쪽 대문접기 때 작업자가 수건을 조금 당겨 줌(개입)",
+   "dur": 60.3,
+   "steps": 1789,
+   "hz": 29.7,
+   "l_grasp": 6.0,
+   "r_grasp": 11.1,
+   "l_rel": 19.8,
+   "r_rel": 20.6,
+   "vel_p95": 38.5,
+   "vel_max": 454.0,
+   "r_pose": [
+    19.9,
+    20.9,
+    30.1
+   ]
+  },
+  {
+   "trial": "10",
+   "outcome": "full_success",
+   "note": "깔끔하게 완성",
+   "dur": 49.4,
+   "steps": 1463,
+   "hz": 29.6,
+   "l_grasp": 5.4,
+   "r_grasp": 9.9,
+   "l_rel": 18.3,
+   "r_rel": 19.3,
+   "vel_p95": 40.2,
+   "vel_max": 234.1,
+   "r_pose": [
+    16.7,
+    25.1,
+    25.0
+   ]
+  }
+ ],
+ "act_half42_1023_lim12": [
+  {
+   "trial": "01",
+   "outcome": "full_success",
+   "note": "깔끔하게 완성",
+   "dur": 47.3,
+   "steps": 1399,
+   "hz": 29.6,
+   "l_grasp": 5.2,
+   "r_grasp": 9.9,
+   "l_rel": 18.3,
+   "r_rel": 19.4,
+   "vel_p95": 44.6,
+   "vel_max": 161.6,
+   "r_pose": [
+    18.2,
+    23.4,
+    27.4
+   ]
+  },
+  {
+   "trial": "02",
+   "outcome": "full_success",
+   "note": "성공",
+   "dur": 50.6,
+   "steps": 1497,
+   "hz": 29.6,
+   "l_grasp": 6.0,
+   "r_grasp": 11.0,
+   "l_rel": 20.0,
+   "r_rel": 20.7,
+   "vel_p95": 41.2,
+   "vel_max": 428.7,
+   "r_pose": [
+    19.4,
+    20.4,
+    31.5
+   ]
+  },
+  {
+   "trial": "03",
+   "outcome": "half_only",
+   "note": "반접기 후 대문접기로 넘어가지 못함",
+   "dur": 48.0,
+   "steps": 1424,
+   "hz": 29.7,
+   "l_grasp": 5.5,
+   "r_grasp": 10.4,
+   "l_rel": 19.3,
+   "r_rel": 20.0,
+   "vel_p95": 32.7,
+   "vel_max": 211.5,
+   "r_pose": [
+    18.2,
+    24.6,
+    26.2
+   ]
+  },
+  {
+   "trial": "04",
+   "outcome": "full_success",
+   "note": "성공. 왼쪽 대문접기에서 한 겹만 잡힘",
+   "dur": 48.4,
+   "steps": 1432,
+   "hz": 29.6,
+   "l_grasp": 5.6,
+   "r_grasp": 11.0,
+   "l_rel": 19.4,
+   "r_rel": 20.4,
+   "vel_p95": 38.8,
+   "vel_max": 407.0,
+   "r_pose": [
+    20.5,
+    18.5,
+    32.2
+   ]
+  },
+  {
+   "trial": "05",
+   "outcome": "full_success",
+   "note": "깔끔하게 완성",
+   "dur": 51.5,
+   "steps": 1530,
+   "hz": 29.7,
+   "l_grasp": 4.6,
+   "r_grasp": 9.6,
+   "l_rel": 18.3,
+   "r_rel": 19.4,
+   "vel_p95": 41.3,
+   "vel_max": 217.0,
+   "r_pose": [
+    18.2,
+    25.8,
+    24.4
+   ]
+  },
+  {
+   "trial": "06",
+   "outcome": "full_success",
+   "note": "성공. 카메라 케이블 간섭 우려",
+   "dur": 48.8,
+   "steps": 1449,
+   "hz": 29.7,
+   "l_grasp": 5.7,
+   "r_grasp": 9.9,
+   "l_rel": 18.7,
+   "r_rel": 19.8,
+   "vel_p95": 41.7,
+   "vel_max": 235.6,
+   "r_pose": [
+    19.6,
+    24.2,
+    26.7
+   ]
+  },
+  {
+   "trial": "07",
+   "outcome": "full_success",
+   "note": "깔끔하게 완성",
+   "dur": 49.6,
+   "steps": 1469,
+   "hz": 29.6,
+   "l_grasp": 4.8,
+   "r_grasp": 9.7,
+   "l_rel": 19.3,
+   "r_rel": 20.2,
+   "vel_p95": 39.6,
+   "vel_max": 267.2,
+   "r_pose": [
+    18.2,
+    23.7,
+    27.8
+   ]
+  },
+  {
+   "trial": "08",
+   "outcome": "full_success",
+   "note": "성공. 카메라 케이블 간섭 우려",
+   "dur": 49.8,
+   "steps": 1472,
+   "hz": 29.6,
+   "l_grasp": 5.6,
+   "r_grasp": 10.2,
+   "l_rel": 19.1,
+   "r_rel": 20.0,
+   "vel_p95": 42.0,
+   "vel_max": 305.0,
+   "r_pose": [
+    17.5,
+    24.9,
+    26.9
+   ]
+  },
+  {
+   "trial": "09",
+   "outcome": "no_grasp",
+   "note": "오른손 집기 실패",
+   "dur": 10.5,
+   "steps": 305,
+   "hz": 29.1,
+   "l_grasp": 5.0,
+   "r_grasp": 9.0,
+   "l_rel": null,
+   "r_rel": null,
+   "vel_p95": 33.2,
+   "vel_max": 126.8,
+   "r_pose": [
+    19.6,
+    20.7,
+    32.2
+   ]
+  },
+  {
+   "trial": "10",
+   "outcome": "full_success",
+   "note": "성공",
+   "dur": 49.4,
+   "steps": 1463,
+   "hz": 29.6,
+   "l_grasp": 5.4,
+   "r_grasp": 9.7,
+   "l_rel": 18.7,
+   "r_rel": 19.7,
+   "vel_p95": 43.9,
+   "vel_max": 349.5,
+   "r_pose": [
+    16.9,
+    22.5,
+    29.2
+   ]
+  }
+ ],
+ "act_half42_1023_lim12_far": [
+  {
+   "trial": "01",
+   "outcome": "no_grasp",
+   "note": "거리 때문에 오른손 집기 실패",
+   "dur": 12.3,
+   "steps": 358,
+   "hz": 29.2,
+   "l_grasp": 5.8,
+   "r_grasp": 12.2,
+   "l_rel": null,
+   "r_rel": null,
+   "vel_p95": 29.0,
+   "vel_max": 214.4,
+   "r_pose": [
+    18.2,
+    22.1,
+    29.9
+   ]
+  },
+  {
+   "trial": "02",
+   "outcome": "no_grasp",
+   "note": "오른손 집기 실패",
+   "dur": 18.6,
+   "steps": 547,
+   "hz": 29.4,
+   "l_grasp": 5.9,
+   "r_grasp": 11.6,
+   "l_rel": null,
+   "r_rel": null,
+   "vel_p95": 39.8,
+   "vel_max": 268.3,
+   "r_pose": [
+    16.2,
+    20.3,
+    30.9
+   ]
+  },
+  {
+   "trial": "03",
+   "outcome": "no_grasp",
+   "note": "오른손 집기 실패",
+   "dur": 17.6,
+   "steps": 514,
+   "hz": 29.2,
+   "l_grasp": 5.7,
+   "r_grasp": 11.5,
+   "l_rel": null,
+   "r_rel": null,
+   "vel_p95": 40.8,
+   "vel_max": 144.0,
+   "r_pose": [
+    18.2,
+    22.8,
+    28.1
+   ]
+  },
+  {
+   "trial": "04",
+   "outcome": "half_only",
+   "note": "진행이 좋다가 오른쪽 대문접기가 틀어져 실패",
+   "dur": 41.6,
+   "steps": 1230,
+   "hz": 29.6,
+   "l_grasp": 5.1,
+   "r_grasp": 9.8,
+   "l_rel": 18.6,
+   "r_rel": 19.6,
+   "vel_p95": 34.0,
+   "vel_max": 277.6,
+   "r_pose": [
+    17.6,
+    22.2,
+    28.0
+   ]
+  },
+  {
+   "trial": "05",
+   "outcome": "right_gate",
+   "note": "오른쪽 대문접기까지 진행(원인 불명)",
+   "dur": 67.9,
+   "steps": 2016,
+   "hz": 29.7,
+   "l_grasp": 4.8,
+   "r_grasp": 9.8,
+   "l_rel": 19.5,
+   "r_rel": 20.5,
+   "vel_p95": 29.2,
+   "vel_max": 274.6,
+   "r_pose": [
+    18.3,
+    23.7,
+    27.0
+   ]
+  },
+  {
+   "trial": "06",
+   "outcome": "no_grasp",
+   "note": "오른손 집기 실패",
+   "dur": 13.5,
+   "steps": 395,
+   "hz": 29.2,
+   "l_grasp": 4.8,
+   "r_grasp": 9.8,
+   "l_rel": null,
+   "r_rel": null,
+   "vel_p95": 42.6,
+   "vel_max": 132.9,
+   "r_pose": [
+    16.3,
+    23.6,
+    28.8
+   ]
+  },
+  {
+   "trial": "07",
+   "outcome": "no_grasp",
+   "note": "오른손 집기 실패",
+   "dur": 17.0,
+   "steps": 500,
+   "hz": 29.4,
+   "l_grasp": 5.4,
+   "r_grasp": 11.6,
+   "l_rel": null,
+   "r_rel": null,
+   "vel_p95": 37.9,
+   "vel_max": 178.1,
+   "r_pose": [
+    16.5,
+    20.8,
+    30.6
+   ]
+  },
+  {
+   "trial": "08",
+   "outcome": "no_grasp",
+   "note": "오른손 집기 실패",
+   "dur": 11.7,
+   "steps": 339,
+   "hz": 29.0,
+   "l_grasp": 4.8,
+   "r_grasp": 9.7,
+   "l_rel": null,
+   "r_rel": null,
+   "vel_p95": 42.3,
+   "vel_max": 234.3,
+   "r_pose": [
+    15.9,
+    21.5,
+    30.9
+   ]
+  },
+  {
+   "trial": "09",
+   "outcome": "no_grasp",
+   "note": "오른손 집기 실패",
+   "dur": 16.3,
+   "steps": 479,
+   "hz": 29.3,
+   "l_grasp": 4.7,
+   "r_grasp": 9.3,
+   "l_rel": null,
+   "r_rel": null,
+   "vel_p95": 39.6,
+   "vel_max": 258.8,
+   "r_pose": [
+    16.0,
+    18.2,
+    34.3
+   ]
+  },
+  {
+   "trial": "10",
+   "outcome": "full_success",
+   "note": "성공(원인 불명)",
+   "dur": 49.5,
+   "steps": 1464,
+   "hz": 29.6,
+   "l_grasp": 5.4,
+   "r_grasp": 10.5,
+   "l_rel": 20.1,
+   "r_rel": 21.1,
+   "vel_p95": 39.3,
+   "vel_max": 277.5,
+   "r_pose": [
+    17.8,
+    20.2,
+    31.5
+   ]
+  }
+ ],
+ "act_wide_full70_1023_lim12": [
+  {
+   "trial": "01",
+   "outcome": "right_gate",
+   "note": "왼쪽 대문접기 실패",
+   "dur": 44.7,
+   "steps": 1322,
+   "hz": 29.6,
+   "l_grasp": 4.7,
+   "r_grasp": 9.2,
+   "l_rel": 18.3,
+   "r_rel": 19.1,
+   "vel_p95": 31.9,
+   "vel_max": 175.6,
+   "r_pose": [
+    18.9,
+    19.3,
+    35.1
+   ]
+  },
+  {
+   "trial": "02",
+   "outcome": "full_success",
+   "note": "성공. 반접기 미완성",
+   "dur": 49.9,
+   "steps": 1440,
+   "hz": 28.8,
+   "l_grasp": 4.5,
+   "r_grasp": 9.2,
+   "l_rel": 18.1,
+   "r_rel": 19.1,
+   "vel_p95": 41.3,
+   "vel_max": 264.9,
+   "r_pose": [
+    19.4,
+    21.9,
+    28.4
+   ]
+  },
+  {
+   "trial": "03",
+   "outcome": "full_success",
+   "note": "성공. 왼쪽 미흡, 반접기 불완전",
+   "dur": 55.1,
+   "steps": 1631,
+   "hz": 29.6,
+   "l_grasp": 7.1,
+   "r_grasp": 11.6,
+   "l_rel": 20.0,
+   "r_rel": 21.0,
+   "vel_p95": 39.6,
+   "vel_max": 245.0,
+   "r_pose": [
+    19.4,
+    21.9,
+    30.5
+   ]
+  },
+  {
+   "trial": "04",
+   "outcome": "full_success",
+   "note": "성공. 대문접기 완성도 부족",
+   "dur": 53.7,
+   "steps": 1590,
+   "hz": 29.6,
+   "l_grasp": 5.5,
+   "r_grasp": 10.4,
+   "l_rel": 19.9,
+   "r_rel": 21.2,
+   "vel_p95": 36.9,
+   "vel_max": 314.2,
+   "r_pose": [
+    20.1,
+    20.5,
+    31.4
+   ]
+  },
+  {
+   "trial": "05",
+   "outcome": "full_success",
+   "note": "성공. 반접기 보완 필요",
+   "dur": 74.2,
+   "steps": 2201,
+   "hz": 29.7,
+   "l_grasp": 5.3,
+   "r_grasp": 9.6,
+   "l_rel": 18.3,
+   "r_rel": 19.2,
+   "vel_p95": 30.8,
+   "vel_max": 263.7,
+   "r_pose": [
+    19.0,
+    22.2,
+    29.6
+   ]
+  }
+ ],
+ "act_wide_full70_1023_lim15": [
+  {
+   "trial": "01",
+   "outcome": "full_success",
+   "note": "깔끔하게 완성",
+   "dur": 62.2,
+   "steps": 1846,
+   "hz": 29.7,
+   "l_grasp": 5.2,
+   "r_grasp": 9.3,
+   "l_rel": 17.0,
+   "r_rel": 18.5,
+   "vel_p95": 35.3,
+   "vel_max": 161.3,
+   "r_pose": [
+    19.2,
+    24.4,
+    27.1
+   ]
+  },
+  {
+   "trial": "02",
+   "outcome": "full_success",
+   "note": "성공. 왼쪽 미흡, 반접기 미숙",
+   "dur": 55.8,
+   "steps": 1656,
+   "hz": 29.7,
+   "l_grasp": 5.7,
+   "r_grasp": 11.9,
+   "l_rel": 19.9,
+   "r_rel": 20.8,
+   "vel_p95": 36.9,
+   "vel_max": 328.3,
+   "r_pose": [
+    18.6,
+    26.2,
+    28.1
+   ]
+  },
+  {
+   "trial": "03",
+   "outcome": "full_success",
+   "note": "성공. 반접기 불완전",
+   "dur": 49.9,
+   "steps": 1480,
+   "hz": 29.7,
+   "l_grasp": 5.1,
+   "r_grasp": 9.4,
+   "l_rel": 19.3,
+   "r_rel": 20.3,
+   "vel_p95": 38.4,
+   "vel_max": 202.7,
+   "r_pose": [
+    18.3,
+    24.6,
+    27.7
+   ]
+  },
+  {
+   "trial": "04",
+   "outcome": "right_gate",
+   "note": "반접기만 안정되면 성공 가능해 보임",
+   "dur": 55.8,
+   "steps": 1661,
+   "hz": 29.8,
+   "l_grasp": 4.9,
+   "r_grasp": 9.3,
+   "l_rel": 18.1,
+   "r_rel": 18.9,
+   "vel_p95": 27.6,
+   "vel_max": 246.2,
+   "r_pose": [
+    18.2,
+    22.1,
+    31.8
+   ]
+  },
+  {
+   "trial": "05",
+   "outcome": "half_only",
+   "note": "반접기 미숙",
+   "dur": 49.4,
+   "steps": 1466,
+   "hz": 29.7,
+   "l_grasp": 5.1,
+   "r_grasp": 9.2,
+   "l_rel": 18.1,
+   "r_rel": 19.0,
+   "vel_p95": 31.0,
+   "vel_max": 200.8,
+   "r_pose": [
+    18.2,
+    24.7,
+    26.8
+   ]
+  }
+ ]
+}

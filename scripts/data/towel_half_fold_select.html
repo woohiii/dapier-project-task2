@@ -1,0 +1,140 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>반접기 시연 선택</title>
+  <style>
+    :root { color-scheme: dark; font-family: system-ui, sans-serif; background: #101417; color: #edf1ef; }
+    * { box-sizing: border-box; }
+    body { margin: 0; }
+    header { position: sticky; top: 0; z-index: 2; padding: 14px 20px; border-bottom: 1px solid #303c3a; background: #17201f; }
+    h1 { font-size: 1.25rem; margin: 0 0 4px; }
+    header p { margin: 0 0 8px; color: #a8b8b3; font-size: .9rem; }
+    #summary { font-weight: 700; color: #97d5bb; }
+    .row { display: flex; gap: 8px; align-items: center; flex-wrap: wrap; margin-top: 8px; }
+    #arg { flex: 1; min-width: 240px; font: 12px ui-monospace, monospace; background: #0c1112; color: #cfe; border: 1px solid #456157; border-radius: 6px; padding: 7px; }
+    button { font: inherit; cursor: pointer; color: #edf1ef; background: #263633; border: 1px solid #456157; border-radius: 7px; padding: 6px 10px; }
+    button:hover, button:focus-visible { border-color: #8ce5be; outline: none; }
+    label { color: #a8b8b3; font-size: .9rem; }
+    main { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 12px; padding: 16px; }
+    .card { border: 2px solid #303c3a; border-radius: 10px; background: #172020; padding: 8px; }
+    .card.good { border-color: #3fcf8e; background: #13281f; }
+    .card.bad { border-color: #8a3b3b; opacity: .55; }
+    .card.focus { box-shadow: 0 0 0 3px #e8c547; }
+    .top { display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 6px; }
+    .ep { font-weight: 700; }
+    .tag { font-size: .8rem; color: #a8b8b3; }
+    .warn { color: #f0a35e; }
+    video { width: 100%; aspect-ratio: 4 / 3; background: #000; border-radius: 6px; display: block; }
+    .btns { display: flex; gap: 6px; margin-top: 6px; }
+    .btns button { flex: 1; }
+    .btns .g.on { background: #20805c; border-color: #61d9a1; font-weight: 700; }
+    .btns .b.on { background: #7a2e2e; border-color: #d97a7a; font-weight: 700; }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>반접기 시연 선택 (70개)</h1>
+    <p>각 카드는 반접기 <b>끝 장면</b>입니다. ▶로 반접기 전체를 재생합니다. 변끼리 딱 맞게 접힌 것만 <b>완벽</b>으로 고르세요.
+      단축키: 카드 클릭으로 선택 후 <b>G</b>=완벽 <b>B</b>=제외 <b>Space</b>=재생 <b>←/→</b>=이동. 선택은 바로 저장됩니다.</p>
+    <div id="summary">불러오는 중…</div>
+    <div class="row">
+      <input id="arg" readonly>
+      <button id="copy">학습 인자 복사</button>
+      <label><input type="checkbox" id="hideDone"> 판정한 카드 숨기기</label>
+    </div>
+  </header>
+  <main id="grid"></main>
+<script>
+const grid = document.getElementById('grid');
+let episodes = [], selection = {}, hints = {}, focus = 0;
+const key = i => String(i).padStart(3, '0');
+
+function summary() {
+  const good = episodes.filter(e => selection[key(e.episode)] === 'good').map(e => e.episode);
+  const bad = Object.values(selection).filter(v => v === 'bad').length;
+  document.getElementById('summary').textContent =
+    `완벽 ${good.length} · 제외 ${bad} · 미판정 ${episodes.length - good.length - bad} / ${episodes.length}`;
+  document.getElementById('arg').value = `'--dataset.episodes=[${good.join(',')}]'`;
+}
+
+function paint(card, ep) {
+  const c = selection[key(ep)];
+  card.classList.toggle('good', c === 'good');
+  card.classList.toggle('bad', c === 'bad');
+  card.querySelector('.g').classList.toggle('on', c === 'good');
+  card.querySelector('.b').classList.toggle('on', c === 'bad');
+  card.hidden = document.getElementById('hideDone').checked && !!c;
+}
+
+async function choose(ep, choice) {
+  if (selection[key(ep)] === choice) choice = null;  // 같은 버튼 다시 누르면 취소
+  const r = await fetch('/api/select', {method: 'POST', headers: {'Content-Type': 'application/json'},
+                                       body: JSON.stringify({episode: ep, choice})});
+  const j = await r.json();
+  if (!r.ok) { alert(j.error); return; }
+  selection = j.selection;
+  paint(grid.children[ep], ep);
+  summary();
+}
+
+function showEnd(v, e) { v.pause(); v.currentTime = Math.max(e.start_s, e.end_s - 0.1); }
+
+function setFocus(i) {
+  focus = Math.max(0, Math.min(episodes.length - 1, i));
+  [...grid.children].forEach((c, j) => c.classList.toggle('focus', j === focus));
+  grid.children[focus].scrollIntoView({block: 'nearest', behavior: 'smooth'});
+}
+
+function togglePlay(i) {
+  const e = episodes[i], v = grid.children[i].querySelector('video');
+  if (!v.paused) { showEnd(v, e); return; }
+  v.currentTime = e.start_s; v.playbackRate = 3; v.play();
+}
+
+function build() {
+  for (const e of episodes) {
+    const h = hints[key(e.episode)] || {};
+    const panWarn = h.left_pan != null && (h.left_pan < -17.8 || h.left_pan > -2.8);
+    const card = document.createElement('div');
+    card.className = 'card';
+    card.innerHTML = `
+      <div class="top"><span class="ep">ep${e.episode}${e.episode >= 50 ? ' <span class="tag">(추가)</span>' : ''}</span>
+        <span class="tag">${(e.length / 30).toFixed(1)}s · 면적비 ${h.area_ratio ?? '-'} ·
+        <span class="${panWarn ? 'warn' : ''}">왼손 pan ${h.left_pan ?? '-'}°</span></span></div>
+      <video preload="metadata" muted playsinline src="${e.video}"></video>
+      <div class="btns"><button class="p">▶ 재생(3배)</button><button class="g">완벽 (G)</button><button class="b">제외 (B)</button></div>`;
+    const v = card.querySelector('video');
+    v.addEventListener('loadedmetadata', () => showEnd(v, e), {once: true});
+    v.addEventListener('timeupdate', () => { if (v.currentTime >= e.end_s - 0.05) showEnd(v, e); });
+    card.querySelector('.p').onclick = ev => { ev.stopPropagation(); setFocus(e.episode); togglePlay(e.episode); };
+    card.querySelector('.g').onclick = ev => { ev.stopPropagation(); setFocus(e.episode); choose(e.episode, 'good'); };
+    card.querySelector('.b').onclick = ev => { ev.stopPropagation(); setFocus(e.episode); choose(e.episode, 'bad'); };
+    card.onclick = () => setFocus(e.episode);
+    grid.appendChild(card);
+    paint(card, e.episode);
+  }
+}
+
+document.addEventListener('keydown', ev => {
+  if (!episodes.length || ev.target.tagName === 'INPUT') return;
+  if (ev.key === 'g' || ev.key === 'G') choose(focus, 'good').then(() => setFocus(focus + 1));
+  else if (ev.key === 'b' || ev.key === 'B') choose(focus, 'bad').then(() => setFocus(focus + 1));
+  else if (ev.key === ' ') { ev.preventDefault(); togglePlay(focus); }
+  else if (ev.key === 'ArrowRight') setFocus(focus + 1);
+  else if (ev.key === 'ArrowLeft') setFocus(focus - 1);
+});
+document.getElementById('hideDone').onchange = () => episodes.forEach(e => paint(grid.children[e.episode], e.episode));
+document.getElementById('copy').onclick = () => {
+  const a = document.getElementById('arg'); a.select();
+  navigator.clipboard?.writeText(a.value).catch(() => document.execCommand('copy'));
+};
+
+fetch('/api/episodes').then(r => r.json()).then(d => {
+  episodes = d.episodes; selection = d.selection; hints = d.hints;
+  build(); summary(); setFocus(0);
+});
+</script>
+</body>
+</html>

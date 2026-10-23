@@ -1,0 +1,6 @@
+trial,outcome,note,time
+01,full_success,깔끔하게 완성,11:29:18
+02,full_success,"성공. 왼쪽 미흡, 반접기 미숙",11:30:44
+03,full_success,성공. 반접기 불완전,11:32:24
+04,right_gate,반접기만 안정되면 성공 가능해 보임,11:34:19
+05,half_only,반접기 미숙,11:35:48

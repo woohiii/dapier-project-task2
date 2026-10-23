@@ -1,0 +1,6 @@
+trial,outcome,note,time
+01,right_gate,왼쪽 대문접기 실패,11:16:15
+02,full_success,성공. 반접기 미완성,11:17:42
+03,full_success,"성공. 왼쪽 미흡, 반접기 불완전",11:19:28
+04,full_success,성공. 대문접기 완성도 부족,11:20:54
+05,full_success,성공. 반접기 보완 필요,11:24:28
