@@ -152,12 +152,10 @@ code { font-family: var(--mono); font-size: 12.5px; background: var(--accent-sof
   </section>
 
   <section>
-    <h2>7. 결론과 다음 단계</h2>
+    <h2>7. 결론</h2>
     <ul>
       <li><b>기본 설정은 lim12로 정합니다.</b> 가까운 거리에서 8/10이고 루프 속도도 lim15와 같습니다. 모터가 걸렸을 때 덜 세게 미는 쪽이 안전합니다.</li>
       <li><b>데이터 재구성은 효과가 있었습니다.</b> 70개 통 모델은 메모마다 "반접기 미흡"이 나왔지만, B안은 반접기 불만 메모가 거의 없습니다. 70개 모델은 5회씩만 시험해 성공률을 직접 비교하기에는 횟수가 부족합니다.</li>
-      <li><b>거리 문제는 이동 장치 쪽에서 맞춥니다.</b> 트롤리 정지 위치를 성공한 거리 기준 ± 허용오차로 맞추고(<code>towel_station.py</code> 뎁스 기준 고정), L자 테이프로 좌우 위치와 각도를 마지막에 확인합니다. 남는 몇 cm는 손목 카메라 모서리 보정으로 흡수하는 방안을 검토합니다.</li>
-      <li><b>먼저 잴 것</b>: 성공 위치와 먼 위치의 뎁스 차이(mm). 이 값이 있어야 허용오차를 정할 수 있습니다.</li>
     </ul>
     <p class="foot">자료: <code>~/towel_eval_logs/act_half42_1023_{lim12,lim15,lim12_far}</code>, <code>act_wide_full70_1023_{lim12,lim15}</code>의 results.csv와 trace/actions.jsonl. 모델: <code>outputs/train/act_half42_gate28_grasp28/checkpoints/065000</code>.</p>
   </section>
